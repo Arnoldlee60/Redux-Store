@@ -13,6 +13,7 @@ import {
 import { QUERY_PRODUCTS } from '../utils/queries';
 import { idbPromise } from '../utils/helpers';
 import spinner from '../assets/spinner.gif';
+import { useSelector } from 'react-redux';
 
 function Detail() {
   const [state, dispatch] = useStoreContext();
@@ -22,7 +23,8 @@ function Detail() {
 
   const { loading, data } = useQuery(QUERY_PRODUCTS);
 
-  const { products, cart } = state;
+  const products = useSelector(state => state.products)
+  const cart = useSelector(state => state.cart)
 
   useEffect(() => {
     // already in global store
